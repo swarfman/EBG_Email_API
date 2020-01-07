@@ -1,0 +1,1 @@
+FLASK_APP=email_generator.py
