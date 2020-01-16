@@ -31,6 +31,25 @@ def add_STEmail():
     db.session.commit()
     return jsonify({'response': 'ok'})
 
+@app.route('/addSTEditorialEmail', methods=['POST'])
+def add_STEditorialEmail():
+    info= request.get_json() or {}
+    #print(info)
+    username = info["username"]
+    user = User.query.filter_by(username=username).first()
+
+    print(info['username'])
+    email_item = Email(
+         body=info['body'] ,
+         user=user,
+         email_type=info["email_type"]
+     )
+    print(email_item)
+
+    db.session.add(email_item)
+    db.session.commit()
+    return jsonify({'response': 'ok'})
+
 
 @app.route('/login', methods=['POST'])
 def login():
